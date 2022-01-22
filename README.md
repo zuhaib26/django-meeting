@@ -8,7 +8,7 @@ python3 -m virtualenv meetingvenv
 ```
 Run the following command to activate the virtual environment
 ```
-source meetingvenv bin/activate
+source meetingvenv/bin/activate
 ```
 see the requirement.txt file for package requirements
 Create a MySql database named scheduler 
