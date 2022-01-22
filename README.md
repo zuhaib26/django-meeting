@@ -40,12 +40,13 @@ To run the application
 You can use GraphQL playground for GraphQl queries which does not require authentication, For GraphQl queries which require authentication i suggest postman
 
 To run the queries that need authentication run 
+```
 mutation{
     tokenAuth(username: "test",password: "test"){
         token
     }
 }
-
+```
 copy the result, in postman go to header part of query add key Authorization in its value add JWT followed by space and past the result.
 
 
