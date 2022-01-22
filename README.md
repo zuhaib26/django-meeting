@@ -2,8 +2,15 @@
 
 open terminal
 go to django-meeting folder
+create virtual environment 
+```
+python3 -m virtualenv meetingvenv
+```
 Run the following command to activate the virtual environment
+```
 source meetingvenv bin/activate
+```
+see the requirement.txt file for package requirements
 Create a MySql database named scheduler 
 In settings.py file update 
 
