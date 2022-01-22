@@ -47,7 +47,7 @@ mutation{
     }
 }
 ```
-copy the result, in postman go to header part of query add key Authorization in its value add JWT followed by space and past the result.
+copy the result, in postman go to header part of query add a key filed Authorization, in its value add JWT followed by space and past the result. Check attached screen shot.
 
 
 Query to get user details from id
@@ -74,7 +74,7 @@ query{
 ```
 
 
-Mutaion to get authentication token. It takes username and password
+Mutation to get authentication token. It takes username and password
 ```
 mutation{
     tokenAuth(username: "test",password: "test"){
