@@ -22,10 +22,10 @@ class Query(graphene.ObjectType):
     schedules = graphene.List(Schedules)
 
 
-    
- 	""" This  takes one argument username
- 	   Returns Availabe Slots of that username """
     def resolve_slots(self, info, username):
+        """ This  takes one argument username
+        Returns Availabe Slots of that username 
+        """
         try:
            user = get_user_model().objects.get(username=username)
         except:
@@ -39,7 +39,7 @@ class Query(graphene.ObjectType):
             raise GraphQLError ("Invalid User")
 
 
- 	#This  Returns all the created Slots of the logged in user
+#This  Returns all the created Slots of the logged in user
     def resolve_user_slots(self, info):
         user = info.context.user
 
@@ -51,7 +51,7 @@ class Query(graphene.ObjectType):
             raise GraphQLError("No Slots Created")
 
 
-	#This  Returns all the scheduled meetings  of the logged in user
+#This  Returns all the scheduled meetings  of the logged in user
     def resolve_schedules(self, info):
         user = info.context.user
 
