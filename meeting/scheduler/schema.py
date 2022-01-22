@@ -44,7 +44,7 @@ class Query(graphene.ObjectType):
         user = info.context.user
 
         if user.is_anonymous:
-            raise GraphQLError("user must be logged in to create a slot")
+            raise GraphQLError("user must be logged in!")
         if CalenderSlot.objects.filter(belongs_to=user).exists():
             return CalenderSlot.objects.filter(belongs_to=user)
         else:
@@ -56,7 +56,7 @@ class Query(graphene.ObjectType):
         user = info.context.user
 
         if user.is_anonymous:
-           raise GraphQLError("user must be logged in to create a slot")
+           raise GraphQLError("user must be logged in!")
         if SlotBooking.objects.filter(slot__in = CalenderSlot.objects.filter(belongs_to=user).values('id')).exists():
            return SlotBooking.objects.filter(slot__in = CalenderSlot.objects.filter(belongs_to=user).values('id'))
         else:
@@ -82,10 +82,12 @@ class CreateAvailableSlot(graphene.Mutation):
         if user.is_anonymous:
             raise GraphQLError("user must be logged in to create a slot")
         if kwargs.get('interval') == 15 or kwargs.get('interval') == 30 or kwargs.get('interval') == 45:
-            if CalenderSlot.objects.filter(belongs_to=user).filter(date=kwargs.get('date')).filter(start_time=kwargs.get('start_time')).exists():
+            date_obj = datetime.strptime(kwargs.get('date'), '%Y-%m-%d')
+            time_obj = datetime.strptime(kwargs.get('start_time'), '%H:%M:%S')
+            if CalenderSlot.objects.filter(belongs_to=user).filter(date=date_obj.date()).filter(start_time=time_obj.time()).exists():
                raise GraphQLError("Slot Already Created")
             else:
-                CalenderSlotObj = CalenderSlot(belongs_to=user, date=kwargs.get('date'), start_time = kwargs.get('start_time'), interval=kwargs.get('interval'))
+                CalenderSlotObj = CalenderSlot(belongs_to=user, date=date_obj.date(), start_time = time_obj.time(), interval=kwargs.get('interval'))
             CalenderSlotObj.save()
             return CreateAvailableSlot(slot=CalenderSlotObj)
         else:
