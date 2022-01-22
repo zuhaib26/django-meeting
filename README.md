@@ -51,48 +51,59 @@ copy the result, in postman go to header part of query add key Authorization in 
 
 
 Query to get user details from id
-```query{
+```
+query{
   user(id:1){
     firstName
     lastName
     email
   }
-}```
+}
+```
 
 Query to get logged in user details
 
-```query{
+```
+query{
   selfUser{
     firstName
     lastName
     email
   }
-}```
+}
+```
 
 
 Mutaion to get authentication token. It takes username and password
-```mutation{
+```
+mutation{
     tokenAuth(username: "test",password: "test"){
         token
     }
-}```
+}
+```
 
 Mutation to verify authentication token
-```mutation{
+```
+mutation{
   verifyToken(token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJleHAiOjE2NDI3NzM5MjEsIm9yaWdJYXQiOjE2NDI3NzM2MjF9.v-ebiQfWD0dbGn-86qSTziEOW_VZ1t0VO8bHFNSEIvs"){
     payload
   }
-}```
+}
+```
 
 Mutation to refresh authentication token
-```mutation {
+```
+mutation {
   refreshToken(token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJleHAiOjE2NDI3NzM5MjEsIm9yaWdJYXQiOjE2NDI3NzM2MjF9.v-ebiQfWD0dbGn-86qSTziEOW_VZ1t0VO8bHFNSEIvs") {
     token
   }
-}```
+}
+```
 
 Query to get Available meeting slots from username for non logged in users
-```query{
+```
+query{
   slots(username:"test"){
     id
     date
@@ -102,10 +113,12 @@ Query to get Available meeting slots from username for non logged in users
       username
     }
   }
-}```
+}
+```
 
 Mutation to book availabe slot for non logged in users. It takes slotId, email, name
-```mutation{
+```
+mutation{
   createSchedule(slotId:13, email:"zuhaib33@test.com", name:"zuhaib3333"){
     schedule{
       name
@@ -117,12 +130,14 @@ Mutation to book availabe slot for non logged in users. It takes slotId, email, 
       }
     }
   }
-}```
+}
+```
 
 
 Mutation to create meeting slots. Only Authenticated users can create it. It needs three arguments date, startTime and interval
 date should be in this format 2021-02-17 and time in this 11:30:00
-```mutation{
+```
+mutation{
   createAvailableSlot(date:"2021-02-17",startTime:"11:30:00",interval:15){
     slot{
       id
@@ -134,20 +149,24 @@ date should be in this format 2021-02-17 and time in this 11:30:00
       }
     }
   }
-}```
+}
+```
 
 Query to get slots of logged in user
-```query{
+```
+query{
   userSlots{
     id
     date
     startTime
     interval
   }
-}```
+}
+```
 
 Mutation to update slot(only authenticated users). It takes four arguments slotId, date, startTime and interval
-```mutation{
+```
+mutation{
   updateSlot(slotId:2, date:"2022-02-14", startTime:"12:30:00", interval:15){
     slot{
       interval
@@ -155,17 +174,21 @@ Mutation to update slot(only authenticated users). It takes four arguments slotI
       startTime
     }
   }
-}```
+}
+```
 
 Mutation to delete slot(only authenticated users). It takes one argument slotId
-```mutation{
+```
+mutation{
   deleteSlot(slotId:9){
     ok
   }
-}```
+}
+```
 
 Query to get meeting schedules of authenticated user
-```query{
+```
+query{
   schedules{
     email
     name
@@ -176,10 +199,12 @@ Query to get meeting schedules of authenticated user
       interval
     }
   }
-}```
+}
+```
 
 Mutation to book a meeting. It takes three arguments slotId, email and name
-```mutation{
+```
+mutation{
   createSchedule(slotId:13, email:"zuhaib33@test.com", name:"zuhaib3333"){
     schedule{
       name
@@ -191,4 +216,5 @@ Mutation to book a meeting. It takes three arguments slotId, email and name
       }
     }
   }
-}```
+}
+```
