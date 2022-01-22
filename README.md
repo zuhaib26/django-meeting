@@ -47,7 +47,7 @@ mutation{
     }
 }
 ```
-copy the result, in postman go to header part of query add a key filed Authorization, in its value add JWT followed by space and past the result. Check attached screen shot.
+copy the result, in postman go to header part of query add a key filed Authorization, in its value add JWT followed by space and past the result. Check attached Video.
 
 
 Query to get user details from id
